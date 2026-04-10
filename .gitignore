@@ -1,0 +1,12 @@
+# Rust Build Artifacts
+/target/
+
+# Local ONNX Models and ML cache
+.fastembed_cache/
+
+# PostgreSQL volume data
+postgres_data/
+
+# OS or Environment files
+.DS_Store
+*.env
