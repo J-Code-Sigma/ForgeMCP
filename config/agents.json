@@ -1,0 +1,27 @@
+{
+  "agents": {
+    "gemini": {
+      "command": "gemini",
+      "args": ["-p"],
+      "model_flag": "-m",
+      "default_model": null,
+      "models": [
+        { "id": "gemini-3-pro-preview", "description": "Gemini 3 Pro — Complex reasoning, latest" },
+        { "id": "gemini-3-flash-preview", "description": "Gemini 3 Flash — Fast, latest" },
+        { "id": "gemini-2.5-pro", "description": "Gemini 2.5 Pro — Stable, strong reasoning" },
+        { "id": "gemini-2.5-flash", "description": "Gemini 2.5 Flash — Fast and cost-effective" },
+        { "id": "gemini-2.5-flash-lite", "description": "Gemini 2.5 Flash Lite — Fastest, simple tasks" }
+      ]
+    },
+    "llama-local": {
+      "command": "/home/jane/Documents/VSCode/Forge-MCP/scripts/llama-agent.sh",
+      "args": [],
+      "model_flag": "",
+      "default_model": null,
+      "models": [
+        { "id": "llama-3.2-1b", "description": "Llama 3.2 1B — Local GPU inference (GTX 960, requires Docker stack running)" }
+      ]
+    }
+  },
+  "_comment": "Add future agent types here (e.g. claude, openai, ollama). Each agent defines its CLI command, flags, and available models."
+}

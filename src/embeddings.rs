@@ -9,7 +9,10 @@ pub struct EmbeddingEngine {
 
 impl EmbeddingEngine {
     pub fn new() -> Result<Self> {
-        let model = TextEmbedding::try_new(InitOptions::new(EmbeddingModel::BGESmallENV15))?;
+        let cache_dir = std::path::PathBuf::from("/home/jane/.cache/fastembed");
+        std::fs::create_dir_all(&cache_dir).ok();
+        let options = InitOptions::new(EmbeddingModel::BGESmallENV15).with_cache_dir(cache_dir);
+        let model = TextEmbedding::try_new(options)?;
         Ok(Self { model })
     }
 

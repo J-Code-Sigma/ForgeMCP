@@ -6,7 +6,7 @@ Forge-MCP is a high-performance, Rust-native Model Context Protocol (MCP) server
 
 The core value proposition is **decoupled orchestration**: it provides Antigravity's Gemini agents with the ability to instantly recall massive datasets (RAG) and execute specialized Standard Operating Procedures (Agent MD Skills) locally, reducing token costs and completely bypassing the latency of Python-based frameworks.
 
-**Current State:** Ground 0 (Greenfield Development).
+**Current State:** Phase 2 (A2A Recursion & Codebase Indexing).
 
 ---
 
@@ -89,6 +89,11 @@ The core value proposition is **decoupled orchestration**: it provides Antigravi
 -   **Connection:** Configured entirely through Antigravity's `mcp_config.json`.
 -   **Compatibility:** Designed strictly to the JSON-RPC 2.0 MCP standard, meaning it can later be used with Claude Desktop or Cursor with zero code changes.
 
+### 5.4 Agent-to-Agent (A2A) Orchestration (Phase 2)
+-   **Subagent Spawning:** Agents can dynamically spawn isolated processes executing specific tools/skills without polluting the main orchestrator's context window.
+-   **Self-Indexing (RAG):** The system empowers the agent to crawl the physical workspace, generating semantic context natively mapped into PgVector so that it learns the codebase actively.
+-   **Skill Handbooks:** Operational instructions are standardized in `/skills/` providing explicit prompts required to spin up robust subagent personas (e.g., `git_subagent.md`, `rust_subagent.md`).
+
 ---
 
 ## 6. Technology Stack
@@ -132,3 +137,9 @@ The core value proposition is **decoupled orchestration**: it provides Antigravi
 -   **`read_skill`**:
     -   *Inputs:* `skill_name` (string).
     -   *Action:* Returns the full Markdown text of a specific skill to guide the agent's next steps.
+-   **`spawn_agent`** (Phase 2):
+    -   *Inputs:* `skill_name` (string), `goal` (string).
+    -   *Action:* Executes a headless bash process spinning up a secondary Antigravity CLI agent initialized strictly with the requested skill's context and assigned the given goal. returns the execution trace.
+-   **`index_workspace`** (Phase 2):
+    -   *Inputs:* `directory` (string).
+    -   *Action:* Recurses through target filesystem directories, chunks `.rs` and `.md` files, vectorizes them, and persists them into the `pgvector` memory database.
