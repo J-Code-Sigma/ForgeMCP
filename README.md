@@ -42,4 +42,8 @@ antigravity --add-mcp '{"name":"forge-mcp","command":"/absolute/path/to/Forge-MC
 
 Test it instantly by asking your Agent: *"Can you list all of my specific Forge skills?"*
 
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 *Built for absolute system supremacy at Ground 0.*
